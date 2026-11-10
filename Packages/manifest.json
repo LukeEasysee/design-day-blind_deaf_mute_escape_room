@@ -8,6 +8,7 @@
     "com.unity.multiplayer.playmode": "3.0.0",
     "com.unity.netcode.gameobjects": "3.1.0",
     "com.unity.pipeline": "0.10.0-exp.1",
+    "com.unity.probuilder": "6.1.4",
     "com.unity.render-pipelines.universal": "17.7.0",
     "com.unity.services.multiplayer": "2.4.1",
     "com.unity.services.vivox": "16.12.1",
