@@ -272,23 +272,7 @@ namespace EscapeRoom.EditorTools
                 Undo.RegisterCreatedObjectUndo(flow, "Create GameFlow");
             }
 
-            // Test floor so players have something to walk on (real levels are built separately).
-            if (GameObject.Find("TestFloor") == null)
-            {
-                var floor = GameObject.CreatePrimitive(PrimitiveType.Plane);
-                floor.name = "TestFloor";
-                floor.transform.localScale = new Vector3(4f, 1f, 4f); // 40 x 40 m
-                Undo.RegisterCreatedObjectUndo(floor, "Create TestFloor");
-            }
-
-            // A test goal hum to walk towards.
-            if (Object.FindAnyObjectByType<GoalHum>() == null)
-            {
-                var humPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(GoalHumPrefabPath);
-                var hum = (GameObject)PrefabUtility.InstantiatePrefab(humPrefab);
-                hum.transform.position = new Vector3(0f, 1f, 12f);
-                Undo.RegisterCreatedObjectUndo(hum, "Create GoalHum");
-            }
+            // The level (TestFloor/GoalHum used to be created here) now comes from Escape Room > Setup Level.
 
             var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
             EditorSceneManager.MarkSceneDirty(scene);

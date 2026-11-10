@@ -35,8 +35,21 @@ public class Drawing : MonoBehaviour
 
     void Reset() => tip = transform;
 
+    PenMouseController controller;
+
+    void Awake() => controller = GetComponent<PenMouseController>();
+
     void Update()
     {
+        // Multiplayer: only the player holding this tool draws. Everyone else receives
+        // the strokes over the network (PaperNetworkSync), so nothing is drawn twice.
+        var nm = Unity.Netcode.NetworkManager.Singleton;
+        if (nm != null && nm.IsListening && controller != null && !controller.IsHeld)
+        {
+            lastSurface = null;
+            return;
+        }
+
         Transform t = tip != null ? tip : transform;
         Vector3 dir = t.forward;
         Vector3 origin = t.position - dir * backOffset;

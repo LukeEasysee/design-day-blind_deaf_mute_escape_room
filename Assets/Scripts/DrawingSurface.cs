@@ -16,6 +16,10 @@ public class DrawingSurface : MonoBehaviour
 
     public Color PaperColor => paperColor;
 
+    /// <summary>Raised for strokes drawn on THIS machine (from, to, radius, color, isDot).
+    /// PaperNetworkSync sends them to the other players.</summary>
+    public event System.Action<Vector2, Vector2, int, Color32, bool> Drawn;
+
     void Awake()
     {
         if (!(GetComponent<Collider>() is MeshCollider))
@@ -54,13 +58,32 @@ public class DrawingSurface : MonoBehaviour
 
     public void DrawDot(Vector2 uv, int radius, Color32 color)
     {
+        DotCore(uv, radius, color);
+        Drawn?.Invoke(uv, uv, radius, color, true);
+    }
+
+    // Stamps dots along the segment so fast pen movement still gives a solid line.
+    public void DrawLine(Vector2 fromUV, Vector2 toUV, int radius, Color32 color)
+    {
+        LineCore(fromUV, toUV, radius, color);
+        Drawn?.Invoke(fromUV, toUV, radius, color, false);
+    }
+
+    /// <summary>Apply a stroke that another player drew (does not re-broadcast it).</summary>
+    public void ApplyRemoteStroke(Vector2 fromUV, Vector2 toUV, int radius, Color32 color, bool isDot)
+    {
+        if (isDot) DotCore(fromUV, radius, color);
+        else LineCore(fromUV, toUV, radius, color);
+    }
+
+    void DotCore(Vector2 uv, int radius, Color32 color)
+    {
         var data = texture.GetPixelData<Color32>(0);
         Stamp(data, UVToPixel(uv), radius, color);
         dirty = true;
     }
 
-    // Stamps dots along the segment so fast pen movement still gives a solid line.
-    public void DrawLine(Vector2 fromUV, Vector2 toUV, int radius, Color32 color)
+    void LineCore(Vector2 fromUV, Vector2 toUV, int radius, Color32 color)
     {
         var data = texture.GetPixelData<Color32>(0);
         Vector2 a = UVToPixel(fromUV);

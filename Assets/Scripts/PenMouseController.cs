@@ -26,6 +26,7 @@ public class PenMouseController : MonoBehaviour
     [SerializeField] LayerMask paperLayers = ~0;
 
     readonly RaycastHit[] hits = new RaycastHit[16];
+    const float FirstPersonReach = 3f;
     bool held;
     bool waitForRelease;
     Vector3 startPosition;
@@ -37,6 +38,10 @@ public class PenMouseController : MonoBehaviour
     static PenMouseController current;
 
     public bool IsHeld => held;
+    /// <summary>The tool this machine is currently holding (null if none).</summary>
+    public static PenMouseController HeldTool => current;
+
+    PenNetworkSync netSync;
 
     void Reset() => tip = transform;
 
@@ -45,14 +50,31 @@ public class PenMouseController : MonoBehaviour
         if (cam == null) cam = Camera.main;
         if (tip == null) tip = transform;
         body = GetComponent<Rigidbody>();
+        netSync = GetComponent<PenNetworkSync>();
     }
+
+    // In game the local player's first-person camera is used (the level's own camera is switched off).
+    // With the cursor captured, the "mouse" is the centre of the screen (crosshair).
+    Camera ActiveCamera()
+    {
+        var local = EscapeRoom.Networking.NetworkPlayer.Local;
+        if (local != null && local.PlayerCamera != null && local.PlayerCamera.isActiveAndEnabled) return local.PlayerCamera;
+        if (cam == null || !cam.isActiveAndEnabled) cam = Camera.main;
+        return cam;
+    }
+
+    internal static Ray PointerRay(Camera c, Mouse mouse) =>
+        Cursor.lockState == CursorLockMode.Locked
+            ? c.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f))
+            : c.ScreenPointToRay(mouse.position.ReadValue());
 
     void Update()
     {
         var mouse = Mouse.current;
+        cam = ActiveCamera();
         if (mouse == null || cam == null) return;
 
-        Ray ray = cam.ScreenPointToRay(mouse.position.ReadValue());
+        Ray ray = PointerRay(cam, mouse);
 
         if (!held)
         {
@@ -101,6 +123,8 @@ public class PenMouseController : MonoBehaviour
             nearest = t;
             nearestDist = hits[i].distance;
         }
+        // First person (crosshair): only within arm's reach. Drawing view / free mouse: anywhere on screen.
+        if (Cursor.lockState == CursorLockMode.Locked && nearestDist > FirstPersonReach) return false;
         return nearest != null && nearest.IsChildOf(transform);
     }
 
@@ -135,6 +159,10 @@ public class PenMouseController : MonoBehaviour
 
     void PickUp()
     {
+        // Multiplayer: someone else is already holding this tool.
+        if (netSync != null && netSync.IsSpawned && netSync.IsHeldByOther) return;
+        if (netSync != null && netSync.IsSpawned) netSync.RequestHold();
+
         if (current != null && current != this) current.Drop();
         current = this;
         held = true;
@@ -154,5 +182,6 @@ public class PenMouseController : MonoBehaviour
         held = false;
         transform.SetPositionAndRotation(startPosition, startRotation);
         if (body != null) body.isKinematic = bodyWasKinematic;
+        if (netSync != null && netSync.IsSpawned) netSync.Release();
     }
 }

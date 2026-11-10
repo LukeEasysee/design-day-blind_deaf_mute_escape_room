@@ -23,31 +23,62 @@ public class SendPaperButton : MonoBehaviour
     bool sent;
 
     readonly RaycastHit[] hits = new RaycastHit[16];
+    const float FirstPersonReach = 3f;
     Coroutine moving;
 
     public bool IsSent => sent;
 
+    PaperNetworkSync netSync;
+
     void Awake()
     {
-        if (paper != null) homeZ = paper.position.z;
+        if (paper != null)
+        {
+            homeZ = paper.position.z;
+            netSync = paper.GetComponent<PaperNetworkSync>();
+            if (netSync != null) netSync.SentChanged += SetSent;
+        }
         if (cam == null) cam = Camera.main;
+    }
+
+    void OnDestroy()
+    {
+        if (netSync != null) netSync.SentChanged -= SetSent;
     }
 
     void Update()
     {
         var mouse = Mouse.current;
-        if (mouse == null || cam == null || !mouse.leftButton.wasPressedThisFrame) return;
+        if (mouse == null || !mouse.leftButton.wasPressedThisFrame) return;
 
-        if (ClickedOnButton(cam.ScreenPointToRay(mouse.position.ReadValue())))
+        // In game: the local player's camera, aiming with the crosshair.
+        var local = EscapeRoom.Networking.NetworkPlayer.Local;
+        Camera c = local != null && local.PlayerCamera != null && local.PlayerCamera.isActiveAndEnabled ? local.PlayerCamera : cam;
+        if (c == null || !c.isActiveAndEnabled) c = cam = Camera.main;
+        if (c == null) return;
+
+        if (ClickedOnButton(PenMouseController.PointerRay(c, mouse)))
             Press();
     }
 
     // Toggles the paper between its starting spot and the other side of the wall.
     // Pressing again mid-move simply turns it around.
+    // Multiplayer: asks the server to toggle; every client then plays the same move.
     public void Press()
     {
         if (paper == null) return;
-        sent = !sent;
+        if (netSync != null && netSync.IsSpawned)
+        {
+            netSync.RequestToggle();
+            return;
+        }
+        SetSent(!sent);
+    }
+
+    void SetSent(bool value)
+    {
+        if (paper == null) return;
+        sent = value;
         if (moving != null) StopCoroutine(moving);
         moving = StartCoroutine(MovePaper(sent ? targetZ : homeZ));
     }
@@ -82,6 +113,8 @@ public class SendPaperButton : MonoBehaviour
             nearest = hits[i].collider.transform;
             nearestDist = hits[i].distance;
         }
+        // First person (crosshair): only within arm's reach. Drawing view / free mouse: anywhere on screen.
+        if (Cursor.lockState == CursorLockMode.Locked && nearestDist > FirstPersonReach) return false;
         return nearest != null && nearest.IsChildOf(transform);
     }
 }

@@ -13,18 +13,91 @@ namespace EscapeRoom.Networking
         /// <summary>Screen area of the panel (GUI coordinates), so clicks on it don't capture the mouse.</summary>
         public static Rect PanelRect { get; private set; }
 
+        // Timer (top centre), crosshair and the restart popup.
+        void DrawGameOverlay()
+        {
+            if (white == null) { white = new Texture2D(1, 1); white.SetPixel(0, 0, Color.white); white.Apply(); }
+            bigStyle ??= new GUIStyle(GUI.skin.label) { fontSize = 30, alignment = TextAnchor.MiddleCenter, wordWrap = true, fontStyle = FontStyle.Bold };
+            timerStyle ??= new GUIStyle(GUI.skin.label) { fontSize = 26, alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold };
+
+            var flow = GameFlow.Instance;
+            if (GameFlow.IsInGame && flow != null)
+            {
+                float left = flow.SecondsLeft;
+                int m = Mathf.FloorToInt(left / 60f), s = Mathf.FloorToInt(left % 60f);
+                timerStyle.normal.textColor = left <= 20f && GameFlow.IsPlaying ? new Color(1f, 0.35f, 0.3f) : Color.white;
+                var r = new Rect(Screen.width / 2f - 80, 8, 160, 40);
+                GUI.color = new Color(0, 0, 0, 0.45f); GUI.DrawTexture(r, white); GUI.color = Color.white;
+                GUI.Label(r, GameFlow.IsPlaying ? $"{m}:{s:00}" : "--:--", timerStyle);
+
+                if (Cursor.lockState == CursorLockMode.Locked)
+                {
+                    GUI.color = new Color(1, 1, 1, 0.8f);
+                    GUI.DrawTexture(new Rect(Screen.width / 2f - 2, Screen.height / 2f - 2, 4, 4), white);
+                    GUI.color = Color.white;
+
+                    string hint = EscapeRoom.Player.PlayerController.InteractionHint;
+                    if (!string.IsNullOrEmpty(hint))
+                    {
+                        var hr = new Rect(Screen.width / 2f - 160, Screen.height / 2f + 18, 320, 28);
+                        GUI.color = new Color(0, 0, 0, 0.55f); GUI.DrawTexture(hr, white); GUI.color = Color.white;
+                        hintStyle ??= new GUIStyle(GUI.skin.label) { fontSize = 16, alignment = TextAnchor.MiddleCenter };
+                        GUI.Label(hr, hint, hintStyle);
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(popupText) && Time.unscaledTime < popupUntil)
+            {
+                var box = new Rect(Screen.width / 2f - 300, Screen.height / 2f - 70, 600, 140);
+                GUI.color = new Color(0, 0, 0, 0.75f); GUI.DrawTexture(box, white); GUI.color = Color.white;
+                GUI.Label(box, popupText, bigStyle);
+            }
+        }
+
+        string popupText;
+        float popupUntil;
+        GUIStyle bigStyle, timerStyle, hintStyle;
+        Texture2D white;
+
+        void OnEnable() => GameFlow.MessageShown += ShowPopup;
+        void OnDisable() => GameFlow.MessageShown -= ShowPopup;
+
+        void ShowPopup(string text, float seconds)
+        {
+            popupText = text;
+            popupUntil = Time.unscaledTime + seconds;
+        }
+
         void OnGUI()
         {
             GUI.depth = 0;
             var sm = SessionManager.Instance;
             if (sm == null) return;
 
+            DrawGameOverlay();
+
             // In game with the cursor captured: show only a small hint so the view stays clear.
             bool inGame = sm.Session != null && Cursor.lockState == CursorLockMode.Locked;
             if (inGame)
             {
                 PanelRect = Rect.zero;
-                GUI.Label(new Rect(10, 10, 600, 22), "Esc: menu   WASD: walk   Hold LMB / RMB: raise left / right hand   Hold V: talk");
+                GUI.Label(new Rect(10, 10, 760, 22), "Esc: menu   WASD: walk   Hold LMB / RMB: raise hand   Click pen/button: use");
+                return;
+            }
+            if (sm.Session != null && GameFlow.IsInGame && EscapeRoom.Player.DrawingStation.Active != null)
+            {
+                PanelRect = Rect.zero;
+                GUI.Label(new Rect(10, 10, 760, 22), global::PenMouseController.HeldTool != null
+                    ? "Drawing view: hold LMB on the paper to draw. RMB / Esc: put the tool down"
+                    : "Drawing view: click the pencil or eraser to pick it up, click the button to send the paper. E / Esc: leave");
+                return;
+            }
+            if (sm.Session != null && GameFlow.IsInGame && global::PenMouseController.HeldTool != null)
+            {
+                // Holding a pen: mouse moves the pen, keep the screen clear.
+                PanelRect = Rect.zero;
+                GUI.Label(new Rect(10, 10, 600, 22), "Move mouse over the paper, hold LMB to draw. RMB / Esc: put it down");
                 return;
             }
 

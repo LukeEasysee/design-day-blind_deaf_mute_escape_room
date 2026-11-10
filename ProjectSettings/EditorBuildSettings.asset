@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/NetworkingTest.unity
     guid: 553a0bc3acd5a5646adab811378ce31f
   - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: b2e1712c226dd3047b290196fd9596f1
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:

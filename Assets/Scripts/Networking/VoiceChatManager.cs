@@ -36,8 +36,8 @@ namespace EscapeRoom.Networking
         [Range(100f, 5000f)] public float deafGameAudioCutoffHz = 300f;
 
         [Header("Microphone")]
-        [Tooltip("Only transmit while the key is held. Recommended when testing several players on one PC: only the focused window talks.")]
-        public bool pushToTalk = true;
+        [Tooltip("Off = open mic (always talking). On = only transmit while the key is held (handy when testing several players on one PC).")]
+        public bool pushToTalk = false;
         public Key pushToTalkKey = Key.V;
 
         [Header("Positional voice")]
