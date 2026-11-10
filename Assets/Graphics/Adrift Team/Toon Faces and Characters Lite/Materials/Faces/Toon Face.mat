@@ -68,6 +68,8 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ScreenSpaceReflectionsContributeTransparent: 1
+    - _WritesColor: 1
     m_Colors:
     - _Base_Color: {r: 0.5292354, g: 1, b: 0.36792436, a: 0}
     - _Shade_Color: {r: 0.38856316, g: 0, b: 1, a: 0}

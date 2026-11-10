@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "unity-mcp": {
+      "command": "${USERPROFILE}/.unity/relay/relay_win.exe",
+      "args": ["--mcp"],
+      "env": {
+        "UNITY_PROJECT_PATH": "C:/Programs/GitHub/design-day-blind_deaf_mute_escape_room"
+      }
+    }
+  }
+}

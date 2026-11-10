@@ -93,6 +93,8 @@ Material:
     - _Metallic: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ScreenSpaceReflections: 1
+    - _ScreenSpaceReflectionsContributeTransparent: 1
     - _Smoothness: 0
     m_Colors:
     - _Base_Color: {r: 0.5292354, g: 1, b: 0.36792436, a: 0}

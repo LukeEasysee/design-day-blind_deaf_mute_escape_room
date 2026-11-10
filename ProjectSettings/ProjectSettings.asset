@@ -13,7 +13,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: Easysee
   productName: Deaf Blind Mute Escape Room
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -100,7 +100,7 @@ PlayerSettings:
   androidApplicationEntry: 2
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
-  runInBackground: 0
+  runInBackground: 1
   callOnDisableOnAssetBundleUnload: 1
   muteOtherAudioSources: 0
   Prepare IOS For Recording: 0
@@ -163,7 +163,11 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  - {fileID: 11400000, guid: 30c91178bde39c947bfb9f9ae76cad5e, type: 2}
+  - {fileID: 11400000, guid: 0104df30113748678d4d2f9079d0d107, type: 2}
+  - {fileID: 11400000, guid: 0852cbe4e8fea2e4880549272b8005af, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   xboxOneDisableKinectGpuReservation: 1
@@ -904,8 +908,8 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   windowsCopyVCRuntime: 1
-  metroPackageName: Deaf Blind Mute Escape Room
-  metroPackageVersion: 
+  metroPackageName: DeafBlindMuteEscapeRoom
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -913,7 +917,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Deaf Blind Mute Escape Room
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Deaf Blind Mute Escape Room
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
@@ -982,11 +986,11 @@ PlayerSettings:
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
   enableDirectStorage: 0
-  cloudProjectId: 
+  cloudProjectId: b88bf642-70d4-4df6-989a-5c95a25af510
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: design-day-blind_deaf_mute_escape_room
+  organizationId: freyble
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

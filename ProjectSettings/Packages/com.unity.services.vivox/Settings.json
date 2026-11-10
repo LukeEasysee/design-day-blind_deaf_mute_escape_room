@@ -1,0 +1,26 @@
+{
+    "m_Dictionary": {
+        "m_DictionaryValues": [
+            {
+                "type": "System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+                "key": "tokenKey",
+                "value": "{\"m_Value\":\"\"}"
+            },
+            {
+                "type": "System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+                "key": "tokenIssuer",
+                "value": "{\"m_Value\":\"57734-desig-94398\"}"
+            },
+            {
+                "type": "System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+                "key": "server",
+                "value": "{\"m_Value\":\"https://unity.vivox.com/appconfig/57734-desig-94398\"}"
+            },
+            {
+                "type": "System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+                "key": "domain",
+                "value": "{\"m_Value\":\"mtu1xp.vivox.com\"}"
+            }
+        ]
+    }
+}
