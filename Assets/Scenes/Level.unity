@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 54333405}
   - component: {fileID: 54333408}
   - component: {fileID: 54333407}
-  - component: {fileID: 54333406}
   m_Layer: 0
   m_Name: Glass (31)
   m_TagString: Untagged
@@ -153,27 +152,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &54333406
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54333404}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &54333407
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -231,13 +209,66 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54333404}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &151163165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 151163166}
+  - component: {fileID: 151163167}
+  m_Layer: 0
+  m_Name: FinishCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &151163166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151163165}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 244460575}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &151163167
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151163165}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &168106075
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 323084526}
     m_Modifications:
     - target: {fileID: 1418257620791840, guid: 87332db484d7e492aa5fa22bea62c7ae, type: 3}
       propertyPath: m_Name
@@ -245,15 +276,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4330883126242722, guid: 87332db484d7e492aa5fa22bea62c7ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.886
+      value: -0.039710045
       objectReference: {fileID: 0}
     - target: {fileID: 4330883126242722, guid: 87332db484d7e492aa5fa22bea62c7ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.674
+      value: -0.46879983
       objectReference: {fileID: 0}
     - target: {fileID: 4330883126242722, guid: 87332db484d7e492aa5fa22bea62c7ae, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.671
+      value: -0.057039976
       objectReference: {fileID: 0}
     - target: {fileID: 4330883126242722, guid: 87332db484d7e492aa5fa22bea62c7ae, type: 3}
       propertyPath: m_LocalRotation.w
@@ -333,6 +364,7 @@ Transform:
   - {fileID: 1789782761}
   - {fileID: 891112936}
   - {fileID: 626364829}
+  - {fileID: 151163166}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &258279034
@@ -525,7 +557,6 @@ GameObject:
   - component: {fileID: 265817140}
   - component: {fileID: 265817143}
   - component: {fileID: 265817142}
-  - component: {fileID: 265817141}
   m_Layer: 0
   m_Name: Glass (13)
   m_TagString: Untagged
@@ -548,27 +579,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &265817141
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 265817139}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &265817142
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1823,7 +1833,6 @@ GameObject:
   - component: {fileID: 271791731}
   - component: {fileID: 271791734}
   - component: {fileID: 271791733}
-  - component: {fileID: 271791732}
   m_Layer: 0
   m_Name: Glass (29)
   m_TagString: Untagged
@@ -1846,27 +1855,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &271791732
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271791730}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &271791733
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2366,6 +2354,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1681156569}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &323084525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 323084526}
+  m_Layer: 0
+  m_Name: Interactions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &323084526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323084525}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1503061545}
+  - {fileID: 1028448052}
+  - {fileID: 1215168525}
+  - {fileID: 689593104}
+  m_Father: {fileID: 1681156569}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &378387938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2514,7 +2537,6 @@ GameObject:
   - component: {fileID: 396467801}
   - component: {fileID: 396467804}
   - component: {fileID: 396467803}
-  - component: {fileID: 396467802}
   m_Layer: 0
   m_Name: Glass (9)
   m_TagString: Untagged
@@ -2537,27 +2559,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &396467802
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 396467800}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &396467803
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2804,7 +2805,6 @@ GameObject:
   - component: {fileID: 498653619}
   - component: {fileID: 498653622}
   - component: {fileID: 498653621}
-  - component: {fileID: 498653620}
   m_Layer: 0
   m_Name: Glass (15)
   m_TagString: Untagged
@@ -2827,27 +2827,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &498653620
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 498653618}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &498653621
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2916,7 +2895,6 @@ GameObject:
   - component: {fileID: 502628348}
   - component: {fileID: 502628351}
   - component: {fileID: 502628350}
-  - component: {fileID: 502628349}
   m_Layer: 0
   m_Name: Glass (20)
   m_TagString: Untagged
@@ -2939,27 +2917,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &502628349
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502628347}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &502628350
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3028,7 +2985,6 @@ GameObject:
   - component: {fileID: 533275768}
   - component: {fileID: 533275771}
   - component: {fileID: 533275770}
-  - component: {fileID: 533275769}
   m_Layer: 0
   m_Name: Glass (16)
   m_TagString: Untagged
@@ -3051,27 +3007,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &533275769
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 533275767}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &533275770
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3140,7 +3075,6 @@ GameObject:
   - component: {fileID: 563692582}
   - component: {fileID: 563692585}
   - component: {fileID: 563692584}
-  - component: {fileID: 563692583}
   m_Layer: 0
   m_Name: Glass (10)
   m_TagString: Untagged
@@ -3163,27 +3097,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &563692583
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 563692581}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &563692584
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3391,7 +3304,6 @@ GameObject:
   - component: {fileID: 585686517}
   - component: {fileID: 585686520}
   - component: {fileID: 585686519}
-  - component: {fileID: 585686518}
   m_Layer: 0
   m_Name: Glass (5)
   m_TagString: Untagged
@@ -3414,27 +3326,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &585686518
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585686516}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &585686519
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3615,7 +3506,6 @@ GameObject:
   - component: {fileID: 629020506}
   - component: {fileID: 629020509}
   - component: {fileID: 629020508}
-  - component: {fileID: 629020507}
   m_Layer: 0
   m_Name: Glass (34)
   m_TagString: Untagged
@@ -3638,27 +3528,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &629020507
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 629020505}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &629020508
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3822,13 +3691,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689593100}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.1599, y: 4.27, z: 1.887}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.76581, y: 0.12720013, z: 0.15895998}
   m_LocalScale: {x: 0.26782, y: 0.26782, z: 0.26782}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1846347443}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 323084526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &689593105
 MonoBehaviour:
@@ -3969,7 +3838,6 @@ GameObject:
   - component: {fileID: 711811314}
   - component: {fileID: 711811317}
   - component: {fileID: 711811316}
-  - component: {fileID: 711811315}
   m_Layer: 0
   m_Name: Glass (8)
   m_TagString: Untagged
@@ -3992,27 +3860,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &711811315
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711811313}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &711811316
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4305,7 +4152,6 @@ GameObject:
   - component: {fileID: 731258032}
   - component: {fileID: 731258035}
   - component: {fileID: 731258034}
-  - component: {fileID: 731258033}
   m_Layer: 0
   m_Name: Glass (18)
   m_TagString: Untagged
@@ -4328,27 +4174,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &731258033
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731258031}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &731258034
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4417,7 +4242,6 @@ GameObject:
   - component: {fileID: 779714394}
   - component: {fileID: 779714397}
   - component: {fileID: 779714396}
-  - component: {fileID: 779714395}
   m_Layer: 0
   m_Name: Glass (3)
   m_TagString: Untagged
@@ -4440,27 +4264,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &779714395
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 779714393}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &779714396
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4865,7 +4668,6 @@ GameObject:
   - component: {fileID: 1021288984}
   - component: {fileID: 1021288987}
   - component: {fileID: 1021288986}
-  - component: {fileID: 1021288985}
   m_Layer: 0
   m_Name: Glass (1)
   m_TagString: Untagged
@@ -4888,27 +4690,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1021288985
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021288983}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1021288986
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5089,12 +4870,43 @@ Transform:
   m_GameObject: {fileID: 1028448047}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 5.156, y: 3.674, z: 0.994}
+  m_LocalPosition: {x: 0.23028994, y: -0.46879983, z: -0.73403996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 323084526}
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+--- !u!1 &1055672686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1055672687}
+  m_Layer: 0
+  m_Name: Deaf Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1055672687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055672686}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.30409002, y: -0.37400007, z: 4.26794}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2117118980}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1114072974
 GameObject:
   m_ObjectHideFlags: 0
@@ -5332,7 +5144,6 @@ GameObject:
   - component: {fileID: 1200522616}
   - component: {fileID: 1200522619}
   - component: {fileID: 1200522618}
-  - component: {fileID: 1200522617}
   m_Layer: 0
   m_Name: Glass (33)
   m_TagString: Untagged
@@ -5355,27 +5166,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1200522617
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1200522615}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1200522618
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5931,7 +5721,6 @@ GameObject:
   - component: {fileID: 1358229603}
   - component: {fileID: 1358229606}
   - component: {fileID: 1358229605}
-  - component: {fileID: 1358229604}
   m_Layer: 0
   m_Name: Glass (27)
   m_TagString: Untagged
@@ -5954,27 +5743,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1358229604
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1358229602}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1358229605
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6202,6 +5970,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368359213}
   m_CullTransparentMesh: 1
+--- !u!1 &1381690176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1381690177}
+  m_Layer: 0
+  m_Name: Mute Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1381690177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381690176}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.02809, y: -0.5209999, z: -2.2670598}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2117118980}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1423023182
 GameObject:
   m_ObjectHideFlags: 0
@@ -6213,7 +6012,6 @@ GameObject:
   - component: {fileID: 1423023183}
   - component: {fileID: 1423023186}
   - component: {fileID: 1423023185}
-  - component: {fileID: 1423023184}
   m_Layer: 0
   m_Name: Glass (21)
   m_TagString: Untagged
@@ -6236,27 +6034,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1423023184
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1423023182}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1423023185
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6325,7 +6102,6 @@ GameObject:
   - component: {fileID: 1445729342}
   - component: {fileID: 1445729345}
   - component: {fileID: 1445729344}
-  - component: {fileID: 1445729343}
   m_Layer: 0
   m_Name: Glass (30)
   m_TagString: Untagged
@@ -6348,27 +6124,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1445729343
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445729341}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1445729344
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6437,7 +6192,6 @@ GameObject:
   - component: {fileID: 1457161522}
   - component: {fileID: 1457161525}
   - component: {fileID: 1457161524}
-  - component: {fileID: 1457161523}
   m_Layer: 0
   m_Name: Glass (19)
   m_TagString: Untagged
@@ -6460,27 +6214,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1457161523
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457161521}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1457161524
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6661,7 +6394,6 @@ GameObject:
   - component: {fileID: 1465756034}
   - component: {fileID: 1465756037}
   - component: {fileID: 1465756036}
-  - component: {fileID: 1465756035}
   m_Layer: 0
   m_Name: Glass (14)
   m_TagString: Untagged
@@ -6684,27 +6416,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1465756035
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465756033}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1465756036
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7109,7 +6820,6 @@ GameObject:
   - component: {fileID: 1497468528}
   - component: {fileID: 1497468531}
   - component: {fileID: 1497468530}
-  - component: {fileID: 1497468529}
   m_Layer: 0
   m_Name: Glass (25)
   m_TagString: Untagged
@@ -7132,27 +6842,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1497468529
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1497468527}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1497468530
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7216,7 +6905,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 323084526}
     m_Modifications:
     - target: {fileID: 1655137212806262, guid: 680cc712cb55643a38fb5bec71bcc683, type: 3}
       propertyPath: m_Name
@@ -7224,15 +6913,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4006903645291198, guid: 680cc712cb55643a38fb5bec71bcc683, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.9
+      value: -0.025710106
       objectReference: {fileID: 0}
     - target: {fileID: 4006903645291198, guid: 680cc712cb55643a38fb5bec71bcc683, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.689
+      value: -0.45379996
       objectReference: {fileID: 0}
     - target: {fileID: 4006903645291198, guid: 680cc712cb55643a38fb5bec71bcc683, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.326
+      value: -1.40204
       objectReference: {fileID: 0}
     - target: {fileID: 4006903645291198, guid: 680cc712cb55643a38fb5bec71bcc683, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7240,7 +6929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4006903645291198, guid: 680cc712cb55643a38fb5bec71bcc683, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4006903645291198, guid: 680cc712cb55643a38fb5bec71bcc683, type: 3}
       propertyPath: m_LocalRotation.y
@@ -7248,7 +6937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4006903645291198, guid: 680cc712cb55643a38fb5bec71bcc683, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4006903645291198, guid: 680cc712cb55643a38fb5bec71bcc683, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7305,7 +6994,7 @@ MonoBehaviour:
   tip: {fileID: 1361232371}
   touchDistance: 0.01
   backOffset: 0.05
-  brushRadius: 4
+  brushRadius: 10
   inkColor: {r: 0, g: 0, b: 0, a: 1}
   paperLayers:
     serializedVersion: 2
@@ -7612,6 +7301,7 @@ Transform:
   - {fileID: 320207407}
   - {fileID: 1161206174}
   - {fileID: 268906606}
+  - {fileID: 323084526}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1724002562
@@ -7625,7 +7315,6 @@ GameObject:
   - component: {fileID: 1724002563}
   - component: {fileID: 1724002566}
   - component: {fileID: 1724002565}
-  - component: {fileID: 1724002564}
   m_Layer: 0
   m_Name: Glass (28)
   m_TagString: Untagged
@@ -7648,27 +7337,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1724002564
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724002562}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1724002565
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8073,7 +7741,6 @@ GameObject:
   - component: {fileID: 1790549966}
   - component: {fileID: 1790549969}
   - component: {fileID: 1790549968}
-  - component: {fileID: 1790549967}
   m_Layer: 0
   m_Name: Glass
   m_TagString: Untagged
@@ -8096,27 +7763,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1790549967
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790549965}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1790549968
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8390,6 +8036,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0553, y: 0}
   m_SizeDelta: {x: 1.1106, y: 0.7907}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1877228813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1877228814}
+  m_Layer: 0
+  m_Name: Blind Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1877228814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877228813}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -3.37809, y: -3.524, z: 1.1809599}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2117118980}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1885573910
 GameObject:
   m_ObjectHideFlags: 0
@@ -8401,7 +8078,6 @@ GameObject:
   - component: {fileID: 1885573911}
   - component: {fileID: 1885573914}
   - component: {fileID: 1885573913}
-  - component: {fileID: 1885573912}
   m_Layer: 0
   m_Name: Glass (2)
   m_TagString: Untagged
@@ -8424,27 +8100,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425441520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1885573912
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885573910}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1885573913
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8681,6 +8336,40 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &2117118979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2117118980}
+  m_Layer: 0
+  m_Name: Spawners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2117118980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117118979}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.41809, y: 3.674, z: 0.83706}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1877228814}
+  - {fileID: 1055672687}
+  - {fileID: 1381690177}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -8690,7 +8379,4 @@ SceneRoots:
   - {fileID: 582275308}
   - {fileID: 1681156569}
   - {fileID: 244460575}
-  - {fileID: 1503061543}
-  - {fileID: 1028448052}
-  - {fileID: 168106075}
-  - {fileID: 689593104}
+  - {fileID: 2117118980}
