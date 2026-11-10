@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 118501d45e43c4b4297f989180639de4
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 330568
+  packageName: Toon Faces Rigged Characters LITE
+  packageVersion: 1.0.1
+  assetPath: Assets/Adrift Team/Toon Faces and Characters Lite/Shaders/FaceLite.shadergraph
+  uploadId: 848302
