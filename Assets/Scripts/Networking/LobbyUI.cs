@@ -10,13 +10,26 @@ namespace EscapeRoom.Networking
     {
         string joinCode = "";
 
+        /// <summary>Screen area of the panel (GUI coordinates), so clicks on it don't capture the mouse.</summary>
+        public static Rect PanelRect { get; private set; }
+
         void OnGUI()
         {
             GUI.depth = 0;
             var sm = SessionManager.Instance;
             if (sm == null) return;
 
-            GUILayout.BeginArea(new Rect(10, 10, 380, 560), GUI.skin.box);
+            // In game with the cursor captured: show only a small hint so the view stays clear.
+            bool inGame = sm.Session != null && Cursor.lockState == CursorLockMode.Locked;
+            if (inGame)
+            {
+                PanelRect = Rect.zero;
+                GUI.Label(new Rect(10, 10, 600, 22), "Esc: menu   WASD: walk   Hold LMB / RMB: raise left / right hand   Hold V: talk");
+                return;
+            }
+
+            PanelRect = new Rect(10, 10, 380, 560);
+            GUILayout.BeginArea(PanelRect, GUI.skin.box);
             GUILayout.Label(sm.Status);
 
             bool inSession = sm.Session != null;
@@ -42,6 +55,26 @@ namespace EscapeRoom.Networking
                 var nm = NetworkManager.Singleton;
                 GUILayout.Label(nm == null ? "No NetworkManager" :
                     nm.IsHost ? "NGO: Host" : nm.IsClient ? "NGO: Client" : "NGO: not running");
+
+                // Lobby -> game
+                var flow = GameFlow.Instance;
+                if (flow == null || !flow.IsSpawned)
+                    GUILayout.Label("No GameFlow in scene (run Escape Room > Setup Player)");
+                else if (flow.Phase.Value == GamePhase.Lobby)
+                {
+                    if (nm != null && nm.IsHost)
+                    {
+                        GUI.enabled = !flow.IsStarting;
+                        string label = flow.IsStarting ? "Starting..." : $"START GAME ({NetworkPlayer.All.Count}/3 players)";
+                        if (GUILayout.Button(label, GUILayout.Height(32)))
+                            flow.StartGame();
+                        GUI.enabled = true;
+                    }
+                    else
+                        GUILayout.Label("Waiting for the host to start...");
+                }
+                else
+                    GUILayout.Label("In game. Click the game view to play.");
 
                 var voice = VoiceChatManager.Instance;
                 if (voice != null)

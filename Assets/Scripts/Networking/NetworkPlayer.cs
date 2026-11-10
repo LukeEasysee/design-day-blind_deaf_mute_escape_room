@@ -5,13 +5,13 @@ using Unity.Collections;
 using Unity.Netcode;
 using Unity.Services.Authentication;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace EscapeRoom.Networking
 {
     /// <summary>
-    /// The networked player avatar. The server owns role assignment (Blind/Deaf/Mute);
-    /// the owning client drives its own movement (NetworkTransform in Owner mode).
+    /// The networked player identity: server-assigned role (Blind/Deaf/Mute), UGS id for
+    /// voice matching, and the local camera. Movement lives in EscapeRoom.Player.PlayerController,
+    /// the procedural body in EscapeRoom.Player.CharacterPose.
     /// </summary>
     public class NetworkPlayer : NetworkBehaviour
     {
@@ -33,6 +33,8 @@ namespace EscapeRoom.Networking
             NetworkVariableWritePermission.Owner);
 
         public Camera PlayerCamera => playerCamera;
+        /// <summary>Where this player's voice comes from (their head).</summary>
+        public Transform VoiceAnchor => voiceAnchor != null ? voiceAnchor : transform;
 
         public static NetworkPlayer FindByAuthId(string authId)
         {
@@ -42,11 +44,8 @@ namespace EscapeRoom.Networking
             return null;
         }
 
-        [SerializeField] float moveSpeed = 4f;
-        [SerializeField] float lookSensitivity = 0.15f;
         [SerializeField] Camera playerCamera;
-
-        float pitch;
+        [SerializeField] Transform voiceAnchor;
 
         public override void OnNetworkSpawn()
         {
@@ -60,12 +59,7 @@ namespace EscapeRoom.Networking
             {
                 Local = this;
                 AuthPlayerId.Value = AuthenticationService.Instance.PlayerId ?? string.Empty;
-                if (playerCamera != null)
-                {
-                    playerCamera.enabled = true;
-                    var listener = playerCamera.GetComponent<AudioListener>();
-                    if (listener) listener.enabled = true;
-                }
+                // Cameras are switched by PlayerController when the game starts (lobby uses the scene camera).
                 LocalRoleChanged?.Invoke(Role.Value);
             }
         }
@@ -98,35 +92,6 @@ namespace EscapeRoom.Networking
             if (requested == PlayerRole.None) return;
             if (All.Any(p => p != this && p.Role.Value == requested)) return;
             Role.Value = requested;
-        }
-
-        void Update()
-        {
-            if (!IsSpawned || !IsOwner) return;
-
-            var kb = Keyboard.current;
-            if (kb != null)
-            {
-                Vector2 input = Vector2.zero;
-                if (kb.wKey.isPressed) input.y += 1;
-                if (kb.sKey.isPressed) input.y -= 1;
-                if (kb.dKey.isPressed) input.x += 1;
-                if (kb.aKey.isPressed) input.x -= 1;
-                Vector3 move = (transform.forward * input.y + transform.right * input.x).normalized;
-                transform.position += move * (moveSpeed * Time.deltaTime);
-            }
-
-            var mouse = Mouse.current;
-            if (mouse != null && mouse.rightButton.isPressed)
-            {
-                Vector2 delta = mouse.delta.ReadValue() * lookSensitivity;
-                transform.Rotate(0f, delta.x, 0f);
-                if (playerCamera != null)
-                {
-                    pitch = Mathf.Clamp(pitch - delta.y, -80f, 80f);
-                    playerCamera.transform.localEulerAngles = new Vector3(pitch, 0f, 0f);
-                }
-            }
         }
     }
 }

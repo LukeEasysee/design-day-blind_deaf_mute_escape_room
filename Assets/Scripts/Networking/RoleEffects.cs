@@ -1,3 +1,4 @@
+using EscapeRoom.Senses;
 using Unity.Services.Vivox.AudioTaps;
 using UnityEngine;
 
@@ -5,7 +6,8 @@ namespace EscapeRoom.Networking
 {
     /// <summary>
     /// Applies the local player's impairment:
-    ///  - Blind: screen goes black (UI still drawn on top for now).
+    ///  - Blind: "blind vision". Their camera renders ONLY the BlindVision layer on black,
+    ///           i.e. sound pulses (SoundVisualizer). Everyone else's camera hides that layer.
     ///  - Deaf:  game sounds get a low-pass filter on each AudioSource. Voices are
     ///           scrambled separately by VoiceChatManager / VoiceScrambler.
     ///  - Mute:  handled by VoiceChatManager (mic forced off).
@@ -19,8 +21,11 @@ namespace EscapeRoom.Networking
 
         const float SweepInterval = 0.5f;
 
-        Texture2D black;
         float nextSweep;
+        Camera styledCamera;
+        CameraClearFlags originalClear;
+        Color originalBackground;
+        int originalMask;
 
         void OnEnable() => NetworkPlayer.LocalRoleChanged += Apply;
         void OnDisable() => NetworkPlayer.LocalRoleChanged -= Apply;
@@ -39,10 +44,11 @@ namespace EscapeRoom.Networking
 
             // Use the networked value so this stays correct even if an event was missed.
             if (NetworkPlayer.Local != null) CurrentRole = NetworkPlayer.Local.Role.Value;
+            ApplyVision();
             bool deaf = CurrentRole == PlayerRole.Deaf;
             float cutoff = VoiceChatManager.Instance != null ? VoiceChatManager.Instance.deafGameAudioCutoffHz : 300f;
 
-            foreach (var src in FindObjectsByType<AudioSource>(FindObjectsSortMode.None))
+            foreach (var src in FindObjectsByType<AudioSource>())
             {
                 if (src.GetComponent<VivoxAudioTap>() != null) continue; // voices: handled by VoiceScrambler
 
@@ -56,17 +62,32 @@ namespace EscapeRoom.Networking
             }
         }
 
-        void OnGUI()
+        void ApplyVision()
         {
-            if (CurrentRole != PlayerRole.Blind) return;
-            if (black == null)
+            var cam = NetworkPlayer.Local != null ? NetworkPlayer.Local.PlayerCamera : null;
+            if (cam == null) return;
+            if (cam != styledCamera)
             {
-                black = new Texture2D(1, 1);
-                black.SetPixel(0, 0, Color.black);
-                black.Apply();
+                styledCamera = cam;
+                originalClear = cam.clearFlags;
+                originalBackground = cam.backgroundColor;
+                originalMask = cam.cullingMask;
             }
-            GUI.depth = 100; // draw behind the lobby UI
-            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), black);
+
+            int layer = SoundVisualizer.Layer;
+            int blindMask = layer >= 0 ? 1 << layer : 0;
+            if (CurrentRole == PlayerRole.Blind)
+            {
+                cam.clearFlags = CameraClearFlags.SolidColor;
+                cam.backgroundColor = Color.black;
+                cam.cullingMask = blindMask;
+            }
+            else
+            {
+                cam.clearFlags = originalClear;
+                cam.backgroundColor = originalBackground;
+                cam.cullingMask = originalMask & ~blindMask;
+            }
         }
     }
 

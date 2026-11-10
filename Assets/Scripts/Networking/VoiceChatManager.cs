@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using EscapeRoom.Senses;
 using Unity.Services.Multiplayer;
 using Unity.Services.Vivox;
 using Unity.Services.Vivox.AudioTaps;
@@ -76,6 +77,7 @@ namespace EscapeRoom.Networking
             public VoiceScrambler Scrambler;
             public NetworkPlayer Speaker;
             public float CreatedAt;
+            public float NextPulse;
         }
 
         void Awake()
@@ -270,14 +272,22 @@ namespace EscapeRoom.Networking
                     r.Speaker = NetworkPlayer.FindByAuthId(r.Participant.PlayerId);
                     if (r.Speaker != null)
                     {
-                        r.Source.transform.SetParent(r.Speaker.transform, false);
-                        r.Source.transform.localPosition = new Vector3(0f, 0.6f, 0f);
+                        r.Source.transform.SetParent(r.Speaker.VoiceAnchor, false);
+                        r.Source.transform.localPosition = Vector3.zero;
                     }
                 }
 
                 // Backup for the mic force-mute: never play a Mute player's voice.
                 bool speakerIsMute = r.Speaker != null && r.Speaker.Role.Value == PlayerRole.Mute;
                 r.Source.mute = speakerIsMute || !HearOthers;
+
+                // Blind vision: show where talking comes from (Mute players make no sound, so no pulse).
+                if (!speakerIsMute && r.Speaker != null && r.Participant.SpeechDetected && Time.time >= r.NextPulse)
+                {
+                    r.NextPulse = Time.time + 0.35f;
+                    float energy = Mathf.Clamp01((float)r.Participant.AudioEnergy);
+                    SoundVisualizer.Pulse(r.Speaker.VoiceAnchor.position, 0.7f + energy);
+                }
 
                 r.Scrambler.enabled = localDeaf;
                 r.Scrambler.cutoffHz = deafCutoffHz;
@@ -286,7 +296,8 @@ namespace EscapeRoom.Networking
                 r.Scrambler.mumblePitchHz = deafMumblePitchHz;
                 r.Scrambler.outputGain = deafOutputGain;
 
-                r.Source.spatialBlend = r.Speaker != null ? spatialBlend : 0f;
+                // In the lobby there are no bodies yet, so voices are flat; in game they come from the avatar.
+                r.Source.spatialBlend = r.Speaker != null && GameFlow.IsPlaying ? spatialBlend : 0f;
                 r.Source.rolloffMode = AudioRolloffMode.Linear;
                 r.Source.minDistance = minDistance;
                 r.Source.maxDistance = maxDistance;
